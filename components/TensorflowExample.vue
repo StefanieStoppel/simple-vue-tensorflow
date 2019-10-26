@@ -25,7 +25,13 @@
       <button class="element button--green" v-on:click="predict" :disabled="!trained">Predict</button>
     </div>
 
-    <LinearRegressionVisualization></LinearRegressionVisualization>
+    <LinearRegressionVisualization
+      :min-x="minXValue"
+      :min-y="minYValue"
+      :max-x="maxXValue"
+      :max-y="maxYValue">
+
+    </LinearRegressionVisualization>
   </div>
 </template>
 
@@ -38,8 +44,8 @@ export default {
   data() {
     return {
       trained: false,
-      xValues: [1,2,3,4],
-      yValues: [1,3,5,7],
+      xValues: [1,2,4,8],
+      yValues: [1,3,5,23],
       predictedValue:'Click on train!',
       valueToPredict: ''
     }
@@ -69,6 +75,20 @@ export default {
     predict() {
       // Use the model to do inference on a data point the model hasn't seen before:
       this.predictedValue = this.model.predict(tf.tensor2d([this.valueToPredict], [1, 1])).get(0, 0);
+    }
+  },
+  computed: {
+    minXValue() {
+      return Math.min(...this.xValues)
+    },
+    minYValue() {
+      return Math.min(...this.yValues)
+    },
+    maxXValue() {
+      return Math.max(...this.xValues)
+    },
+    maxYValue() {
+      return Math.max(...this.yValues)
     }
   }
 }

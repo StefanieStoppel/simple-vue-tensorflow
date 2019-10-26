@@ -16,8 +16,7 @@
       minX: Number,
       maxX: Number,
       minY: Number,
-      maxY: Number,
-
+      maxY: Number
     },
     data () {
       return {
@@ -36,7 +35,7 @@
               label: 'Predicted Linear Regression Line',
               borderColor: '#41B883',
               borderWidth: 5,
-              data: [{x:0, y:6}, {x:4, y:9}],
+              data: [{x: this.minX, y: this.minY}, {x: this.maxX, y: this.maxY}], // we need only min and max coordinates
               fill: false,
               showLine: true,
               pointRadius: 0
@@ -49,9 +48,6 @@
             }
           ]
         }
-      },
-      getRandomInt () {
-        return Math.floor(Math.random() * (50 - 5 + 1)) + 5
       }
     }
   }
