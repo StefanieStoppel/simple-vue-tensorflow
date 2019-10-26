@@ -1,16 +1,23 @@
 <template>
   <div class="small">
-    <line-chart :chart-data="datacollection"></line-chart>
+    <scatter-chart :chart-data="datacollection"></scatter-chart>
     <button @click="fillData()">Randomize</button>
   </div>
 </template>
 
 <script>
-  import LineChart from './LineChart.js'
+  import ScatterChart from './ScatterChart.js'
 
   export default {
     components: {
-      LineChart
+      ScatterChart
+    },
+    props: {
+      minX: Number,
+      maxX: Number,
+      minY: Number,
+      maxY: Number,
+
     },
     data () {
       return {
@@ -29,13 +36,14 @@
               label: 'Predicted Linear Regression Line',
               borderColor: '#41B883',
               borderWidth: 5,
-              data: [this.getRandomInt(), this.getRandomInt()],
+              data: [{x:0, y:6}, {x:4, y:9}],
               fill: false,
+              showLine: true,
               pointRadius: 0
             }, {
               label: 'Data Points (Xs and Ys)',
               backgroundColor: '#35495E',
-              data: [this.getRandomInt(), this.getRandomInt()],
+              data: [{x:1, y:5}, {x:2, y:4}],
               showLine: false,
               pointRadius: 10
             }
