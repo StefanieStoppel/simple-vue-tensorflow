@@ -45,6 +45,9 @@ export default {
   components: {LinearRegressionVisualization},
   data() {
     return {
+      model: null,
+      minYValue: null,
+      maxYValue: null,
       trained: false,
       xValues: [1,2,4,8],
       yValues: [1,3,5,45],
@@ -59,19 +62,21 @@ export default {
     },
     train() {
       // Define a model for linear regression.
-      const model = this.model = tf.sequential();
-      model.add(tf.layers.dense({units: 1, inputShape: [1]}));
+      this.model = tf.sequential();
+      this.model.add(tf.layers.dense({units: 1, inputShape: [1]}));
 
       // Prepare the model for training: Specify the loss and the optimizer.
-      model.compile({loss: 'meanSquaredError', optimizer: 'sgd'});
+      this.model.compile({loss: 'meanSquaredError', optimizer: 'sgd'});
 
       const xs = tf.tensor2d(this.xValues, [this.xValues.length, 1]);
       const ys = tf.tensor2d(this.yValues, [this.yValues.length, 1]);
 
       // Train the model using the data.
-      model.fit(xs, ys, {epochs: 50}).then(() => {
+      this.model.fit(xs, ys, {epochs: 50}).then(() => {
         this.trained = true;
         this.predictedValue = 'Ready for making predictions';
+        this.minYValue = this.model.predict(tf.tensor2d([this.minXValue], [1, 1])).get(0, 0);
+        this.maxYValue = this.model.predict(tf.tensor2d([this.maxXValue], [1, 1])).get(0, 0);
       });
     },
     predict() {
@@ -83,14 +88,8 @@ export default {
     minXValue() {
       return Math.min(...this.xValues)
     },
-    minYValue() {
-      return Math.min(...this.yValues)
-    },
     maxXValue() {
       return Math.max(...this.xValues)
-    },
-    maxYValue() {
-      return Math.max(...this.yValues)
     },
     pointCoordinates() {
       return this.xValues.map((x, index) => {
