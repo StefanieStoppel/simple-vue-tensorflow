@@ -5,7 +5,8 @@
       :min-y="minYValue"
       :max-x="maxXValue"
       :max-y="maxYValue"
-      :point-coordinates="pointCoordinates">
+      :point-coordinates="pointCoordinates"
+      :predicted-point-coordinates="predictedPointCoordinates">
     </LinearRegressionVisualization>
 
     <div class="train-controls col-sm-8">
@@ -29,7 +30,8 @@
     <div class="predict-controls">
       <h2 class="section col-sm-1">Predicting</h2>
       <input class="field element" v-model="valueToPredict" type="number" placeholder="Enter an integer number"><br>
-      <div class="element">{{predictedValue}}</div>
+      <div class="element" v-if="predictedValue !== null">{{predictedValue}}</div>
+      <div class="element" v-if="!trained">Click on train!</div>
       <button class="element button--green" v-on:click="predict" :disabled="!trained">Predict</button>
     </div>
   </div>
@@ -46,8 +48,8 @@ export default {
       trained: false,
       xValues: [1,2,4,8],
       yValues: [1,3,5,45],
-      predictedValue:'Click on train!',
-      valueToPredict: ''
+      predictedValue: null,
+      valueToPredict: null
     }
   },
   methods: {
@@ -94,6 +96,9 @@ export default {
       return this.xValues.map((x, index) => {
         return {x, y: this.yValues[index]}
       })
+    },
+    predictedPointCoordinates() {
+      return {x: parseInt(this.valueToPredict), y: parseInt(this.predictedValue)}
     }
   }
 }
