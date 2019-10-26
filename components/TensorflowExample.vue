@@ -29,7 +29,8 @@
       :min-x="minXValue"
       :min-y="minYValue"
       :max-x="maxXValue"
-      :max-y="maxYValue">
+      :max-y="maxYValue"
+      :point-coordinates="pointCoordinates">
 
     </LinearRegressionVisualization>
   </div>
@@ -45,7 +46,7 @@ export default {
     return {
       trained: false,
       xValues: [1,2,4,8],
-      yValues: [1,3,5,23],
+      yValues: [1,3,5,45],
       predictedValue:'Click on train!',
       valueToPredict: ''
     }
@@ -89,6 +90,11 @@ export default {
     },
     maxYValue() {
       return Math.max(...this.yValues)
+    },
+    pointCoordinates() {
+      return this.xValues.map((x, index) => {
+        return {x, y: this.yValues[index]}
+      })
     }
   }
 }
