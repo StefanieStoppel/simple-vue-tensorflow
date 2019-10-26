@@ -24,13 +24,17 @@
       <div class="element">{{predictedValue}}</div>
       <button class="element button--green" v-on:click="predict" :disabled="!trained">Predict</button>
     </div>
+
+    <LinearRegressionVisualization></LinearRegressionVisualization>
   </div>
 </template>
 
 <script>
 import * as tf from '@tensorflow/tfjs';
+import LinearRegressionVisualization from "./LinearRegressionVisualization";
 
 export default {
+  components: {LinearRegressionVisualization},
   data() {
     return {
       trained: false,
