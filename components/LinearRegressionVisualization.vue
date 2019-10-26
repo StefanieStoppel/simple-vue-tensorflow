@@ -1,7 +1,6 @@
 <template>
   <div class="small">
-    <scatter-chart :chart-data="datacollection"></scatter-chart>
-    <button @click="fillData()">Randomize</button>
+    <scatter-chart :chart-data="dataCollection"></scatter-chart>
     <div>{{pointCoordinates}}</div>
   </div>
 </template>
@@ -20,19 +19,11 @@
       maxY: Number,
       pointCoordinates: Array
     },
-    data () {
-      return {
-        datacollection: null
-      }
-    },
-    mounted () {
-      this.fillData()
-    },
-    methods: {
-      fillData () {
-        this.datacollection = {
+    computed: {
+      dataCollection () {
+        return {
           labels: ['X', 'Y'],
-          datasets: [
+            datasets: [
             {
               label: 'Predicted Linear Regression Line',
               borderColor: '#41B883',
@@ -54,7 +45,7 @@
           ]
         }
       }
-    }
+    },
   }
 </script>
 

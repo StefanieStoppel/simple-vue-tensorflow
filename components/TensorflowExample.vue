@@ -14,8 +14,8 @@
       </div>
       </div>
 
-      <button class="button-add-example button--green" v-on:click="addItem">+</button>
-      <button class="button-train button--green" v-on:click="train">Train</button>
+      <button class="button-add-example button--green" @click.stop="addItem">+</button>
+      <button class="button-train button--green" @click="train">Train</button>
     </div>
 
     <div class="predict-controls">
