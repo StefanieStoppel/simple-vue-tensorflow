@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <div class="train-controls">
+  <div class="row">
+    <div class="train-controls col-sm-8">
       <h2 class="section col-sm-1">Training Data (x,y) pairs</h2>
       <div class="field-label">X</div><div class="field-label">Y</div>
 

@@ -1,7 +1,6 @@
 <template>
   <div class="small">
     <scatter-chart :chart-data="dataCollection"></scatter-chart>
-    <div>{{pointCoordinates}}</div>
   </div>
 </template>
 
