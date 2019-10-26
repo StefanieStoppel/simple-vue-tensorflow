@@ -1,5 +1,13 @@
 <template>
   <div class="row">
+    <LinearRegressionVisualization
+      :min-x="minXValue"
+      :min-y="minYValue"
+      :max-x="maxXValue"
+      :max-y="maxYValue"
+      :point-coordinates="pointCoordinates">
+    </LinearRegressionVisualization>
+
     <div class="train-controls col-sm-8">
       <h2 class="section col-sm-1">Training Data (x,y) pairs</h2>
       <div class="field-label">X</div><div class="field-label">Y</div>
@@ -24,15 +32,6 @@
       <div class="element">{{predictedValue}}</div>
       <button class="element button--green" v-on:click="predict" :disabled="!trained">Predict</button>
     </div>
-
-    <LinearRegressionVisualization
-      :min-x="minXValue"
-      :min-y="minYValue"
-      :max-x="maxXValue"
-      :max-y="maxYValue"
-      :point-coordinates="pointCoordinates">
-
-    </LinearRegressionVisualization>
   </div>
 </template>
 

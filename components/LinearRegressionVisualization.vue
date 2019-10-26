@@ -1,5 +1,5 @@
 <template>
-  <div class="small">
+  <div class="plot-wrapper">
     <scatter-chart :chart-data="dataCollection"></scatter-chart>
   </div>
 </template>
@@ -49,8 +49,8 @@
 </script>
 
 <style>
-  .small {
+  .plot-wrapper {
     max-width: 600px;
-    margin:  150px auto;
+    margin: 2em auto;
   }
 </style>
