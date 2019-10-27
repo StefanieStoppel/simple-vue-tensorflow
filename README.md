@@ -5,6 +5,8 @@ The network is trained on X coordinates entered via input fields and
 tries to predict the corresponding Y coordinates. This process is called [linear regression](https://en.wikipedia.org/wiki/Linear_regression).
 The data and predicted regression line is visualized using [vue-chartjs](https://vue-chartjs.org/). 
 
+<img src="assets/app-screenshot.png" width="250px"/>
+
 ---
 
 Built using vue init drginm/tensorflow-js-vuejs-starter-template simple-vue-tensorflow
